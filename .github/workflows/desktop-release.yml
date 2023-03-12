@@ -1,4 +1,4 @@
-name: "Android Release"
+name: "Desktop Release"
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     name: "Build & Release"
-    runs-on: macos-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v2
@@ -25,11 +25,9 @@ jobs:
       - run: flutter --version
       - run: flutter pub get
       - run: flutter test
-      - run: flutter build apk --release
-      - name: Push to Releases
-        uses: ncipollo/release-action@v1
+      - run: flutter config --enable-windows-desktop
+      - run: flutter build windows
+      - uses: actions/upload-artifact@v3
         with:
-          name: "paimon"
-          artifacts: "build/app/outputs/apk/release/*.apk"
-          tag: v1.${{ github.run_number }}
-          token: ${{ secrets.TOKEN }}
+          name: windows_app.${{ github.run_number }}
+          path: build/windows/runner/Release/
