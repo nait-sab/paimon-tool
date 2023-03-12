@@ -46,7 +46,6 @@ linter:
     empty_constructor_bodies: true
     exhaustive_cases: true
     library_prefixes: true
-    lines_longer_than_80_chars: true
     no_leading_underscores_for_library_prefixes: true
     no_leading_underscores_for_local_identifiers: true
     prefer_const_constructors: false

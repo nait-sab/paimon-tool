@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:paimon/config/app.dart';
+import 'package:paimon/controllers/navigation_controller.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MaterialApp(
-    title: "Paimon",
-    theme: ThemeData(
-      primarySwatch: Colors.blue,
+  runApp(
+    MultiProvider(
+      providers: [
+        ListenableProvider(create: (_) => NavigationController()),
+      ],
+      child: App(),
     ),
-    home: Scaffold(
-      appBar: AppBar(
-        title: Text("Paimon"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Hi Rabbit"),
-          ],
-        ),
-      ),
-    ),
-  ));
+  );
 }
